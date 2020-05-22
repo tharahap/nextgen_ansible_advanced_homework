@@ -15,4 +15,8 @@
     mode: 0644
  
 - name: install base tools and packages
-
+  yum:
+    name: "{{ item }}" 
+    state: latest
+  with_items:
+    - python-pip
