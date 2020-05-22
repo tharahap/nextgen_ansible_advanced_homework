@@ -34,21 +34,17 @@
     timeout: 200
   with_dict: "{{ osp_servers }}"
 
-#- name: OpenStack servers
-#  os_server_facts:
-#    cloud: openstack
-#  register: result
-#  tags:
-#    - test.servers
-#
-#- name: Wait for server to be available
-#  wait_for:
-#    host: "{{ item.public_v4 }}"
-#    port: 22
-#    search_regex: OpenSSH
-#    timeout: 600
-#  delegate_to: "{{ inventory_hostname }}"
-#  with_items: 
-#    - "{{ result.ansible_facts.openstack_servers }}"
-#  tags:
-#    - test.servers
+- name: OpenStack servers
+  os_server_facts:
+    cloud: openstack
+  register: result
+
+- name: Wait for server to be available
+  wait_for:
+    host: "{{ item.public_v4 }}"
+    port: 22
+    search_regex: OpenSSH
+    timeout: 600
+  delegate_to: "{{ inventory_hostname }}"
+  with_items: 
+    - "{{ result.ansible_facts.openstack_servers }}"
