@@ -1,16 +1,43 @@
+---
+
 - name: Create Homework Assignment project
+  tower_project:
+    name: "{{ proj_name }}"
+    organization: Default
+    state: present
+    tower_host: tower1.81e8.example.opentlc.com
+    tower_username: admin
+    tower_password: r3dh4t1!
+    scm_type: git
+    scm_url: https://github.com/tharahap/3tierapp.git
+    scm_clean: yes
+    scm_delete_on_update: yes
+    scm_update_on_launch: yes
+
+#- name: Create Inventory
+#  add_host:
+#    name: workstation_inventory
+#    groups: workstation
+#    hostname: workstation-6ef6.green.osp.opentlc.com
+#  command: |
+#    tower-cli inventory create -n "{{static_inventory_name}}" --organization "{{org_name}}"
+
+#- name: Create Group in static inventory
+#  command: |
+#    tower-cli group create --inventory "{{static_inventory_name}}"  --name {{group_name}}
 
 
-- name: Machine Credentail to connect to workstation using openstack.pub
+- name: Machine Credential to connect to workstation using openstack.pub
   tower_credential:
     name: Connect_to_workstation
     organization: Default
     state: present
     kind: ssh
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
+##    tower_host: tower1.81e8.example.opentlc.com
     tower_username: admin
     tower_password: r3dh4t1!
-    ssh_key_data: "/root/.ssh/openstack.pem"
+    ssh_key_data: /root/.ssh/openstack.pem
     username: cloud-user
 
 - name: Create Inventory
