@@ -1,1 +1,4 @@
-payload: haproxy
+#payload: haproxy
+
+web_pkg: httpie
+proxy_pkg: haproxy

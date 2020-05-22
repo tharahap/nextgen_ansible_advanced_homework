@@ -1,2 +1,25 @@
 ---
 
+- name: "Install {{ tom_pkg }}"
+  yum: 
+    name: "{{ tom_pkg }}"
+    state: latest
+
+- name: "Enable {{ tom_pkg }}"
+  service: 
+    name: "{{ tom_pkg }}"
+    state: started
+    enabled: yes
+
+- name: "Create {{ tom_pkg }} directory"
+  file:
+    path: /usr/share/tomcat/webapps/ROOT
+    state: directory
+
+- name: "Configure {{ tom_pkg }} file"
+  template:
+    src: index.html.j2
+    dest: /usr/share/tomcat/webapps/ROOT/index.html 
+    mode: 0644
+  notify:
+  - restart_tom

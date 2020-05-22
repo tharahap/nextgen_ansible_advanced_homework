@@ -1,7 +1,11 @@
 ---
 
-- name: start {{ payload }}
+#- name: start {{ payload }}
+#  service:
+#    name: tomcat
+#    state: started
+
+- name: restart_tom
   service:
     name: tomcat
-    state: started
-
+    state: restarted

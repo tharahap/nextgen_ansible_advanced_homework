@@ -1,3 +1,24 @@
 ---
 
+- name: "Install {{ web_pkg }}"
+  yum: 
+    name: "{{ web_pkg }}"
+    state: latest
 
+- name: "Install {{ proxy_pkg }}"
+  yum: 
+    name: "{{ proxy_pkg }}"
+    state: latest
+
+- name: "Enable {{ proxy_pkg }}"
+  service: 
+    name: "{{ proxy_pkg }}"
+    state: started
+    enabled: yes
+
+- name: "Configure {{ proxy_pkg }}"
+  template: 
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify:
+    - restart_LB 
