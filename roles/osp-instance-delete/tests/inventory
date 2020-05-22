@@ -1,2 +1,2 @@
 localhost
-
+workstation-${OSP_GUID}.${OSP_DOMAIN}
