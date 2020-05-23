@@ -11,4 +11,4 @@
       cloud: openstack
       name: "{{ item.name }}"
       state: absent
-    loop: "{{ result.ansible_info.openstack_servers }}"
+    loop: "{{ result.openstack_servers }}"
