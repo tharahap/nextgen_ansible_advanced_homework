@@ -16,7 +16,7 @@
       return_content: yes
       status_code: 200
     with_items:
-       - "{{ openstack_info.openstack_servers }}"
+       - "{{ openstack_info.openstack_servers.0.public_v4 }}"
     register: webpage
 
   - name: Fail if 'Ansible has done its job' is not in the page content
