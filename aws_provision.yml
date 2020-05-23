@@ -24,13 +24,11 @@
         dest: /root/order_svc.sh
         mode: 0755
     - name: create credentials
-      template:
-      #copy:
-        #content: |
-          #export username={{ param_user }}
-          #export password={{ param_password }}
-          #export uri=https://labs.opentlc.com
-        src: root/credential.rc.j2
+      copy:
+        content: |
+          export username={{ param_user }}
+          export password={{ param_password }}
+          export uri=https://labs.opentlc.com
         dest: /root/credential.rc
         mode: 0755
 
