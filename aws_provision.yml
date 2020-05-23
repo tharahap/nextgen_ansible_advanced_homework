@@ -26,7 +26,7 @@
     - name: create credentials
       copy:
         content: |
-          export username={{ param_user }}
+          export username={{ param_username }}
           export password={{ param_password }}
           export uri=https://labs.opentlc.com
         dest: /root/credential.rc
